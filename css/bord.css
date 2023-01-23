@@ -1,0 +1,27 @@
+    .mibord{
+    border: 2px solid rgb(138, 130, 241);
+    
+    border-radius: 25px;
+background-color: #b9fae6;
+
+
+  }
+
+  h6{
+    text-align: center;
+
+  }
+  .titlex{
+    text-align: center;
+    font-weight: bold;
+    color: blueviolet;
+    font-size: 1.5rem;
+   
+    }
+
+    .descripc{
+      text-align: right;
+      font-style: oblique;
+      color: coral;
+
+    }
