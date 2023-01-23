@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bord.css">
-<script src="js/BDJSON.JS"></script>   
-<script src="https://github.com/VictorYoveraRivas22/MapasConLeaflet/blob/master/mapa.js"></script>   
 
+<script src="js/BDJSON.JS"></script>   
+<script src="js/defaultList.js"></script>  
     <title>DEMO MEDICAMENTOS</title>
 </head>
 <body >
@@ -26,20 +26,13 @@
     <input type="password" name="i4can" id="i4can"  placeholder="Coloque Clave">
     <br>
     <br>
-    <label for="busq">Busqueda: </label>
-    <input type="text" id="busq" placeholder="Coloque Codigo o Medicamento"> 
-    <button>buscar</button>
+    <label for="abusq">Busqueda: </label>
+    <input type="text" id="abusq" placeholder="Coloque Codigo o Medicamento"> 
+    <button onclick="buscar()">buscar</button>
     <br>
     <p>Resultado....</p>
     <br>
-
-
-
-
-    
-    
-    
-
+    <P id="carg"></P>
   </div>
   
 

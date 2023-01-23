@@ -1,6 +1,35 @@
 'use strict';
 
+function buscar(){
+  let abusc= document.getElementById( "abusq" ).value; 
+  console.log(abusc);
 
+  for(var k in data) {
+    console.log(k, data[k]);
+  }
+  var cant2=data[k].length;
+  // if (result[k][0].medcod)
+  var encontra=-1;
+
+  if ( document.getElementById( "AD" )) 
+  {
+  document.getElementById( "AD" ).remove();
+  }
+ for(var i =0;i< cant2;i++){
+  if (data[k][i].medcod==abusc||data[k][i].descrip.includes(abusc)){
+      console.log("encontrado");
+    
+    encontra=i;
+    var para = document.createElement("p");
+    
+    para.innerHTML= "<h6 ID=\"AD\">"+data[k][encontra].medcod +"<br>Fecha Vencimiento:"+data[k][encontra].fechaven+"<br>Descripcion:"+
+            data[k][encontra].descrip+"<br>Precio:"+data[k][encontra].precio+"<br>Stock :"+data[k][encontra].stocktot+"</h6>";
+    document.getElementById("carg").append(para);
+   
+    }
+  }
+
+}
 
 
 function myFunction() {

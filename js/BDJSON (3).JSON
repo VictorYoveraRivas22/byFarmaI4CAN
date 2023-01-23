@@ -1,4 +1,4 @@
-var data={
+{
     "STOCK DE MEDICAMENTOS 190123": [
         {
             "almcod": "02238F0101",
@@ -4329,4 +4329,4 @@ var data={
             "fechaven": "28-Feb-24"
         }
     ]
-};
+}
