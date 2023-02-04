@@ -1,5 +1,14 @@
 'use strict';
 
+
+
+function buscarDONADOS(){
+
+
+}
+
+
+
 function buscar(){
   let abusc= document.getElementById( "abusq" ).value; 
 abusc=abusc.toUpperCase();
@@ -22,19 +31,13 @@ abusc=abusc.toUpperCase();
  for(var i =0;i< cant2;i++){
   if (data[k][i].medcod==abusc||data[k][i].descrip.includes(abusc)){
       console.log("encontrado");
-    
     encontra=i;
-    
-    
     str +="<li>Codigo:"+data[k][encontra].medcod +"<br>Descripcion:"+ data[k][encontra].descrip+
             "<br>Fecha Vencimiento:"+data[k][encontra].fechaven+
             "<br>Precio: S/."+data[k][encontra].precio+"<br>Stock :"+data[k][encontra].stocktot+"<br>"+
             "<br></li>";
     }
-
   }
-
-
   para.innerHTML ="<h6 ID=\"AD\">"+str+"</h6>";
   document.getElementById("carg").append(para);
 
