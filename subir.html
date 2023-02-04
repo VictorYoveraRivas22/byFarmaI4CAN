@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/bord.css">
+    </head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <section class="uparchivos">
+    <div class="xd1">  
+      <h1 >STOCK DE PRODUCTOS</h1>
+      <p>Seleccione el archivo *.xls o *.xlsx Que tenga la relacion y stock de Productos</p>
+      <input type="file" id="file_upload" />
+      <!-- <button onclick="upload()">Upload</button>  -->
+    </div>
+
+    <div class="xd1">  
+      <h1>STOCK CON VENCIMIENTO</h1>
+      <p>Seleccione el archivo *.xls o *.xlsx Que tenga la relacion y stock de Productos</p>
+      <input type="file" id="file_upload2" />
+      <!-- <button onclick="upload2()">Upload</button>  -->
+    </div>
+
+  </section>
+     
+    <h1>CONSOLIDAR DATA</h1>
+    <p>Seleccione el archivo *.xls o *.xlsx Que tenga la relacion y stock de Productos</p>
+    <button onclick="CONSOLIDAR()">Consolidar</button>  
+    <br>
+    <br>
+
+
+    <!-- container to display the json result -->
+    <textarea id="json-result" style="display:none;height:500px;width:350px;" readonly></textarea>
+    
+    <div id="container">
+      <h1>Guarde el Archivo y enviar a Estadistica </h1>
+      <button id="download">Download file</button>
+    </div>
+    
+    <script>
+
+      function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      var archivosCargados=false;
+
+      async function CONSOLIDAR() {
+        await sleep(1000);
+        uploadStock();
+        await sleep(1000);
+        upload2();
+        await sleep(1000);
+        if (archivosCargados){
+        for(var k in result) { /*console.log(k, result[k]); */ }
+         let cant=result[k].length;
+        for(var l in EX2) { /* console.log(l, EX2[k]); */   }
+        let cant2=EX2[l].length;
+        for(var i =0;i< cant;i++){
+          for(var j =0;j< cant2;j++){
+            if (result[k][i].medcod==  EX2[l][j].codigo_med){
+              result[k][i].fechaven=EX2[l][j].fec_exp;
+            }
+              }
+        }
+        var resultEle=document.getElementById("json-result");
+                resultEle.value=JSON.stringify(result, null, 4);
+                resultEle.style.display='block';
+
+              }else {
+                    alert("Por favor Seleccione los archivos..");
+              }
+
+        }
+
+      // Method to upload a valid excel file
+      function uploadStock() {
+        var files = document.getElementById('file_upload').files;
+        if(files.length==0){
+         
+          alert("Por favor Selecciones el archivo con el Stock...");
+          return;
+        }
+        archivosCargados=true;
+        var filename = files[0].name;
+        var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
+        if (extension == '.XLS' || extension == '.XLSX') {
+            excelFileToJSON(files[0]);
+        }else{
+            alert("Archivo Seleccionado no es valido.");
+        }
+      }
+       
+      function upload2() {
+        var files = document.getElementById('file_upload2').files;
+        if(files.length==0){
+          alert("Por favor Selecciones el archivo con Vencimiento...");
+          return;
+        }
+        archivosCargados=true;
+        var filename = files[0].name;
+        var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
+        if (extension == '.XLS' || extension == '.XLSX') {
+            excelFileToJSON2(files[0]);
+        }else{
+            alert("Archivo Seleccionado no es valido.");
+        }
+      }
+       
+      //Method to read excel file and convert it into JSON 
+      var result = {};
+      function excelFileToJSON(file){
+          try {
+            var reader = new FileReader();
+            reader.readAsBinaryString(file);
+            reader.onload = function(e) {
+ 
+                var data = e.target.result;
+                var workbook = XLSX.read(data, {
+                    type : 'binary'
+                });
+                result = {};
+                workbook.SheetNames.forEach(function(sheetName) {
+                var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                if (roa.length > 0) {
+                    result[sheetName] = roa;
+                }
+              });
+                //displaying the json result
+             /*   var resultEle=document.getElementById("json-result");
+                resultEle.value=JSON.stringify(result, null, 4);
+                resultEle.style.display='block';
+                console.log(result);
+
+                */
+                }
+            }catch(e){
+                console.error(e);
+            }
+      }
+
+      var EX2 = {};
+      function excelFileToJSON2(file){
+          try {
+            var reader = new FileReader();
+            reader.readAsBinaryString(file);
+            reader.onload = function(e) {
+ 
+                var data = e.target.result;
+                var workbook = XLSX.read(data, {
+                    type : 'binary'
+                });
+                EX2 = {};
+                workbook.SheetNames.forEach(function(sheetName) {
+                var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                if (roa.length > 0) {
+                  EX2[sheetName] = roa;
+                }
+              });
+            //    console.log(EX2);
+                }
+            }catch(e){
+                console.error(e);
+            }
+      }
+        //
+        function downloadFile(filename, content) {
+  // It works on all HTML5 Ready browsers as it uses the download attribute of the <a> element:
+  const element = document.createElement('a');
+  
+  //A blob is a data type that can store binary data
+  // "type" is a MIME type
+  // It can have a different value, based on a file you want to save
+  const blob = new Blob([content], { type: 'plain/text' });
+
+  //createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+  const fileUrl = URL.createObjectURL(blob);
+  
+  //setAttribute() Sets the value of an attribute on the specified element.
+  element.setAttribute('href', fileUrl); //file location
+  element.setAttribute('download', filename); // file name
+  element.style.display = 'none';
+  
+  //use appendChild() method to move an element from one element to another
+  document.body.appendChild(element);
+  element.click();
+  
+  //The removeChild() method of the Node interface removes a child node from the DOM and returns the removed node
+  document.body.removeChild(element);
+};
+
+window.onload = () => {
+  document.getElementById('download').
+  addEventListener('click', e => {
+    //The value of the file name input box
+    CONSOLIDAR();
+    const filename = "BDJSON.JS";// document.getElementById('filename').value;
+    
+    //The value of what has been input in the textarea
+    const content = document.getElementById('json-result').value;
+    console.log(content);
+    // The && (logical AND) operator indicates whether both operands are true. If both operands have nonzero values, the result has the value 1 . Otherwise, the result has the value 0 .
+    
+    if (filename && content) {
+      downloadFile(filename, "var data="+content+";");
+    }
+  });
+};
+
+
+    </script>
+  </body>
+</html>

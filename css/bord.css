@@ -7,11 +7,14 @@ background-color: #b9fae6;
 
   }
 
+    body{
+      background-color: rgb(253, 253, 241);
+    }
 
   .titlex{
     text-align: center;
     font-weight: bold;
-    color: blueviolet;
+    color: rgb(8, 107, 69);
     font-size: 1.5rem;
    
     }
@@ -19,6 +22,42 @@ background-color: #b9fae6;
     .descripc{
       text-align: right;
       font-style: oblique;
-      color: coral;
+      color: white;
 
     }
+    .contentx    {
+      background-color: cadetblue;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem;
+
+    }
+    .resultd{
+      background-color: white;
+    }
+    button{
+      background-color: rgb(233, 222, 171);
+      border-radius: 0.5rem;
+    }
+
+    #abusq{
+      text-transform: uppercase;
+      width: 20rem;
+    }
+
+
+    .uparchivos {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      
+
+    }
+    .uparchivos div {
+      width: 45%;
+      border: 0.2rem;
+      border-color:cadetblue;
+      border-style:solid;
+      padding: 1rem;
+    }
+  

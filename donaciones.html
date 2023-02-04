@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bord.css">
+    <title>Medicamentos Donados</title>
+
+    <script src="js/BDDONADOS.JS"></script>   
+<script src="js/defaultList.js"></script>  
+</head>
+<body>
+
+    <header>
+        <p class="titlex">   DEMO Farmacia CLAS CANCHAQUE - MEDICAMETNOS DONADOS       </p>
+    </header>
+    <section>
+        <div class="contentx">
+            <P class="descripc">Farmacia I4CAN Febrero 2023 </P>
+            <label for="abusq">Busqueda: </label>
+            <input type="text" id="abusq" placeholder="Codigo o nombre del Medicamento" > 
+            <button onclick="buscarDONADOS()">buscar</button>
+            <br>
+            <p>Resultado....</p>
+            <br>
+            <div class="resultd">
+                <P id="carg"></P>
+            </div>
+        </div>
+    </section>
+    
+    
+</body>
+</html>
