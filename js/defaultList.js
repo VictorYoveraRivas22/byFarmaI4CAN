@@ -1,8 +1,93 @@
 'use strict';
 
-
-
+var kl;
+var kld;
 function buscarDONADOS(){
+  let abusc= document.getElementById( "abusq" ).value; 
+  abusc=abusc.toUpperCase();
+  let encontra=-1;
+  //donados.datadonados
+  if ( document.getElementById( "AD" )) 
+  {
+  document.getElementById( "AD" ).remove();
+  }
+
+
+   if ( document.getElementById( "klxs" )) 
+  {
+  document.getElementById( "cuerpo" ).remove();
+  }
+
+  if ( document.getElementById( "cuerpo" )) 
+  {
+
+
+     } else {
+      let prux =document.createElement("tbody");
+      prux.id="cuerpo";
+      document.getElementById( "mitable" ).append(prux);
+
+     }
+
+ // document.getElementById("cuerpo").removeChild(pru);
+  var str="";
+  var str2="";
+  
+  var para = document.createElement("p");
+
+  let cant= donados.datadonados.length;
+  
+  const cuerpotabla=document.getElementById("cuerpo");
+ for(let i =0;i< cant;i++){
+  let medi=donados.datadonados[i]["NOMBRE MEDICAMENTOS"];
+  let medcome=donados.datadonados[i]["NOMBRE COMERCIAL"];
+  if (medi.includes(abusc)||medcome.includes(abusc)){
+    encontra=i;
+
+    /*
+    str +="<li>Nº:"+donados.datadonados[i]["N"] +
+          "<br>NOMBRE MEDICAMENTOS :"+ medi+
+            "<br>NOMBRE COMERCIAL :"+medcome+
+            "<br>FECHA DE VENCIMIENTO: S/."+donados.datadonados[i]["FECHA DE VENCIMIENTO"]+
+            "<br>CANTIDAD :"+donados.datadonados[i]["CANTIDAD"]+
+            "<br>USO :"+donados.datadonados[i]["USO"]+
+            "<br>CAJA :"+donados.datadonados[i]["CAJA"]+
+            "<br></li>";
+            */
+            var trx = "<td>"+donados.datadonados[i]["N"]+'</td>'+
+            "<td>"+medi+'</td>'+
+          '<td>'+medcome+'</td>'+
+          '<td align="center">'+donados.datadonados[i]["FECHA DE VENCIMIENTO"]+'</td>'+
+          '<td>'+donados.datadonados[i]["USO"]+'</td>'+
+          '<td align="center">'+donados.datadonados[i]["CANTIDAD"]+'</td>'+
+          '<td align="center">'+donados.datadonados[i]["CAJA"]+'</td>';
+          
+
+
+          str2+= trx;
+          let pru =document.createElement("tr");
+          pru.id="klxs"
+          pru.innerHTML=trx;
+          cuerpotabla.append(pru);
+        
+    }
+  }
+  
+  
+  
+  
+
+
+  //document.getElementById("cuerpo").append();
+
+  //para.innerHTML ="<h6 ID=\"AD\">"+str+"</h6>";
+  //document.getElementById("carg").append(para);
+  /*
+  fetch('./JS/BDDONADOS.JSON', { mode: "no-cors" })
+  .then((response) => response.json())
+  .then(dataX => console.log(dataX)
+  );
+*/
 
 
 }
@@ -11,9 +96,7 @@ function buscarDONADOS(){
 
 function buscar(){
   let abusc= document.getElementById( "abusq" ).value; 
-abusc=abusc.toUpperCase();
-  
-  //console.log(abusc);
+  abusc=abusc.toUpperCase();
 
   for(var k in data) {
    // console.log(k, data[k]);
@@ -44,11 +127,12 @@ abusc=abusc.toUpperCase();
 }
 
 
-
-//de aqui abajo esta ok 
-//#region KEYPRESS
-
-
+  $("#abusq").keyup(function(event) {
+    if (event.key === 13) {
+      buscarDONADOS();
+      $("#busquedaA").click();
+    }
+});
 
 document.addEventListener('keypress', (event) => {
 
@@ -86,7 +170,6 @@ document.addEventListener('keydown', (event) => {
       }
 }, false);
 
-~//#endregion
     
 
 

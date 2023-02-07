@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bord.css">
     <title>Medicamentos Donados</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script src="js/BDDONADOS.JS"></script>   
 <script src="js/defaultList.js"></script>  
@@ -13,23 +16,52 @@
 <body>
 
     <header>
-        <p class="titlex">   DEMO Farmacia CLAS CANCHAQUE - MEDICAMETNOS DONADOS       </p>
+        <p class="titlex">   DEMO Farmacia CLAS CANCHAQUE - MEDICAMENTOS DONADOS       </p>
     </header>
+    <section>
+        <a href="index.html">Ir a medicamentos</a>
+    </section>
+        
     <section>
         <div class="contentx">
             <P class="descripc">Farmacia I4CAN Febrero 2023 </P>
             <label for="abusq">Busqueda: </label>
             <input type="text" id="abusq" placeholder="Codigo o nombre del Medicamento" > 
-            <button onclick="buscarDONADOS()">buscar</button>
+            <button id="busquedaA" onclick="buscarDONADOS()">buscar</button>
             <br>
             <p>Resultado....</p>
             <br>
-            <div class="resultd">
-                <P id="carg"></P>
+            <div class="resultd" id="resultd">
+               <!-- <P id="carg"></P>-->
+
+
+                <table id="mitable" class="mitable">
+                    <thead>
+                        <th>Nº</th>
+                        <th>NOMBRE MEDICAMENTOS</th>
+                      <th>NOMBRE COMERCIAL</th>
+                      <th>FECHA DE VENCIMIENTO</th>
+                      <th>USOCANTIDAD</th>
+                      <th>CANTIDAD</th>
+                      <th>CAJA</th>
+                    </thead>
+                    <tbody id="cuerpo">
+                    </tbody>
+                  </table>
+                
             </div>
+            
+
+
         </div>
     </section>
+    <section>
+       
+
+    </section>
     
-    
+   
+
+<br>
 </body>
 </html>

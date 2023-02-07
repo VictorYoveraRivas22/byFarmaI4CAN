@@ -60,4 +60,42 @@ background-color: #b9fae6;
       border-style:solid;
       padding: 1rem;
     }
+  #cuerpo tr td{
+    text-align: center;
+  }
+
+  
+  .mitable{
+    
+    border-color: black;
+    border-style:solid;
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+  }
+
+
+  .mitable thead th{
+    background-color: rgb(234, 255, 187);
+    font-size: 0.9rem;
+    border-collapse: separate;
+    
+  }
+
+
+  .mitable tbody tr{
+    border: blue;
+    border-style:solid;
+    background-color: rgb(205, 243, 237);
+    font-size: 0.9rem;
+  }
+
+a{
+  background-color: rgb(234, 255, 187);
+  font-size: 1.5rem;
+  border: blue;
+  border-style:solid;
+}
+  
+
   
